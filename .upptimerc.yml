@@ -1,31 +1,73 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# .upptimerc.yml — Upptime status page configuration
+#
+# Upptime runs entirely on GitHub Actions + GitHub Pages — zero infra, free.
+#
+# Setup (one-time, ~5 min):
+#   1. Create a NEW GitHub repo (e.g. "ucchino/status") — do NOT put this in the monorepo.
+#      Upptime needs its own repo because it commits history on every check.
+#   2. Go to https://github.com/upptime/upptime and click "Use this template"
+#   3. Run `npm run sync:uptime-config -- --targetRepositoryRoot <status-repo-path>` from `devops/pulumi`
+#      or copy this file manually to the new repo root as ".upptimerc.yml"
+#   4. Add secret GH_PAT: repo Settings → Secrets → UPPTIME_GH_PAT
+#      (a GitHub Personal Access Token with repo + workflow scopes)
+#   5. Enable GitHub Pages: Settings → Pages → source: "gh-pages" branch
+#   6. The Actions workflow runs every 5 minutes automatically.
+#
+# Result:
+#   - Public status page at https://ucchino.github.io/status
+#   - Badge: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ucchino/status/master/api/proxy-ping/uptime.json
+#   - Automatic incident issues created on GitHub when a check fails
+#   - 90-day history stored as JSON in the repo
+#
+# Limitations vs Grafana Synthetic:
+#   - Single probe location (GitHub Actions runner, usually us-east)
+#   - No per-region latency breakdown
+#   - Use Grafana Synthetic for multi-region; use Upptime for the public status page
+# ─────────────────────────────────────────────────────────────────────────────
 
-sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Test Broken Site
-    url: https://thissitedoesnotexist.koj.co
+owner: ucchino             # GitHub org or username
+repo: status               # GitHub repo name for the Upptime instance
+userAgent: Parsimon-Upptime
 
+# Where to commit check history (must match GitHub Pages branch)
+commitMessages:
+  statusChange: "🟠 $SITE_NAME is $STATUS"
+  updateTemplate: "📅 Update $SITE_NAME: $RESPONSE_CODE in $RESPONSE_TIME ms"
+
+# Public status page settings
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
-  navbar:
-    - title: Status
-      href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+  cname: status.parsimon.io       # custom domain (optional, point CNAME to GitHub Pages)
+  name: Parsimon Status
+  description: "Real-time status of the Parsimon API"
+  logo: https://parsimon.io/logo.png     # optional
+  theme: light
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+# Checks — mapped from devops/pulumi/src/providers/monitoring/uptime-checks.yml
+sites:
+  - name: Parsimon API - Liveness
+    url: https://api.parsimon.io/fake/v1/ping
+    # Upptime checks for HTTP 200; body check not natively supported —
+    # the fake handler only returns 200 when fully operational.
+    expectedStatusCodes: [200]
+    maxResponseTime: 500    # ms — alert threshold
+
+  - name: Parsimon API - Health
+    url: https://api.parsimon.io/health
+    expectedStatusCodes: [200]
+    maxResponseTime: 200
+
+  - name: Parsimon API - Readiness
+    url: https://api.parsimon.io/ready
+    expectedStatusCodes: [200]
+    maxResponseTime: 500
+
+# Notification channels — at least one required for incident alerts
+notifications:
+  - type: slack
+    webhook: $SLACK_WEBHOOK_URL   # set as GitHub Actions secret SLACK_WEBHOOK_URL
+
+  # Uncomment to also open GitHub issues on incident (default Upptime behavior)
+  # - type: issue
+
+# Check interval — GitHub Actions cron minimum is 5 minutes
+# Upptime default is every 5 minutes.
