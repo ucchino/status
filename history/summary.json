@@ -23,17 +23,18 @@
     "icon": "https://icons.duckduckgo.com/ip3/api.parsimon.io.ico",
     "slug": "parsimon-api-health",
     "status": "down",
-    "uptime": "67.66%",
-    "uptimeDay": "67.66%",
-    "uptimeWeek": "67.66%",
-    "uptimeMonth": "67.66%",
-    "uptimeYear": "67.66%",
+    "uptime": "65.55%",
+    "uptimeDay": "65.55%",
+    "uptimeWeek": "65.55%",
+    "uptimeMonth": "65.55%",
+    "uptimeYear": "65.55%",
     "time": 0,
     "timeDay": 0,
     "timeWeek": 0,
     "timeMonth": 0,
     "timeYear": 0,
     "dailyMinutesDown": {
+      "2026-05-09": 42,
       "2026-05-08": 419
     }
   },
