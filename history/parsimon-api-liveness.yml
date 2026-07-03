@@ -1,7 +1,7 @@
 url: https://api.parsimon.io/fake/v1/ping
-status: up
+status: degraded
 code: 200
-responseTime: 387
-lastUpdated: 2026-07-02T23:27:50.067Z
+responseTime: 1347
+lastUpdated: 2026-07-03T00:03:34.021Z
 startTime: 2026-05-08T09:23:31.641Z
 generator: Upptime <https://github.com/upptime/upptime>
