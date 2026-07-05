@@ -1,7 +1,7 @@
 url: https://api.parsimon.io/health
-status: up
+status: degraded
 code: 200
-responseTime: 178
-lastUpdated: 2026-07-05T16:41:28.107Z
+responseTime: 247
+lastUpdated: 2026-07-05T17:36:30.282Z
 startTime: 2026-05-08T09:23:32.300Z
 generator: Upptime <https://github.com/upptime/upptime>
