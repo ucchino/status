@@ -5,11 +5,11 @@
     "icon": "https://icons.duckduckgo.com/ip3/api.parsimon.io.ico",
     "slug": "parsimon-api-liveness",
     "status": "down",
-    "uptime": "75.57%",
+    "uptime": "75.58%",
     "uptimeDay": "97.42%",
     "uptimeWeek": "99.63%",
     "uptimeMonth": "99.86%",
-    "uptimeYear": "75.57%",
+    "uptimeYear": "75.58%",
     "time": 0,
     "timeDay": 0,
     "timeWeek": 0,
@@ -55,9 +55,9 @@
     "slug": "parsimon-api-health",
     "status": "down",
     "uptime": "98.81%",
-    "uptimeDay": "75.78%",
-    "uptimeWeek": "81.91%",
-    "uptimeMonth": "95.84%",
+    "uptimeDay": "74.16%",
+    "uptimeWeek": "81.82%",
+    "uptimeMonth": "95.82%",
     "uptimeYear": "98.81%",
     "time": 0,
     "timeDay": 0,
@@ -65,12 +65,12 @@
     "timeMonth": 0,
     "timeYear": 0,
     "dailyMinutesDown": {
-      "2026-08-22": 348,
+      "2026-08-22": 371,
       "2026-08-21": 383,
       "2026-08-20": 335,
       "2026-08-19": 319,
       "2026-08-18": 324,
-      "2026-08-17": 109
+      "2026-08-17": 96
     }
   },
   {
