@@ -56,9 +56,9 @@
     "slug": "parsimon-api-health",
     "status": "down",
     "uptime": "98.90%",
-    "uptimeDay": "74.53%",
-    "uptimeWeek": "82.93%",
-    "uptimeMonth": "96.07%",
+    "uptimeDay": "73.88%",
+    "uptimeWeek": "82.89%",
+    "uptimeMonth": "96.06%",
     "uptimeYear": "98.90%",
     "time": 0,
     "timeDay": 0,
@@ -66,12 +66,12 @@
     "timeMonth": 0,
     "timeYear": 0,
     "dailyMinutesDown": {
-      "2026-08-25": 129,
+      "2026-08-25": 145,
       "2026-08-24": 331,
       "2026-08-23": 281,
       "2026-08-22": 371,
       "2026-08-21": 383,
-      "2026-08-20": 225
+      "2026-08-20": 213
     }
   },
   {
